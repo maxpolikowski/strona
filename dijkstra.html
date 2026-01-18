@@ -1,9 +1,220 @@
-<html>
-	<head>
-	<title> Algorytm dijkstry </title>
-	</head>
-	<body bgcolor="#D4FFF6">
-	<h1 align="center"> Dijkstra </h1>
-	<hr width="570" size = "4" color = "black"/>
-    
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Algorytm Dijkstry</title>
+
+    <style>
+        body {
+            background-color: #D4FFF6;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .section {
+            background: #f4fffc;
+            padding: 15px;
+            margin: 20px auto;
+            width: 70%;
+            border-radius: 10px;
+        }
+
+        .step {
+            border-left: 5px solid #0077aa;
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        .formula {
+            background: white;
+            padding: 10px;
+            text-align: center;
+            font-style: italic;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        ul {
+            text-align: left;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Dijkstra</h1>
+<hr width="570" size="4" color="black">
+
+<p>
+    <a href="index.html">Powrót do strony głównej</a>
+</p>
+
+<p>
+Algorytm Dijkstry działa poprawnie tylko w grafach, w których wszystkie wagi
+krawędzi są nieujemne. Graf może być skierowany lub nieskierowany.
+</p>
+
+<p>
+Algorytm Dijkstry służy do znajdowania najkrótszych ścieżek w grafie
+z <b>nieujemnymi wagami krawędzi</b>.
+</p>
+
+<h2>Przykładowy graf</h2>
+<img src="dijkstra.png" width = "400" height = "280">
+
+<div class="section">
+<h2>Inicjalizacja</h2>
+<p>
+Tworzymy tablicę <code>dist</code>, gdzie <code>dist[v]</code> oznacza
+najkrótszą znaną odległość z wierzchołka startowego do wierzchołka <code>v</code>.
+</p>
+<ul>
+    <li><code>dist[1] = 0</code></li>
+    <li><code>dist[v] = ∞</code> dla pozostałych wierzchołków</li>
+</ul>
+<p>
+Dodatkowo korzystamy z kolejki priorytetowej, która umożliwia szybki wybór
+wierzchołka o najmniejszej aktualnej wartości dist.
+</p>
+</div>
+
+<div class="section">
+<h2>Działanie algorytmu krok po kroku</h2>
+
+<div class="step">
+<b>Krok 1 – wierzchołek 1</b><br>
+Z wierzchołka 1 możemy przejść do wierzchołków 3, 2 oraz 5.
+</div>
+
+<div class="step">
+<b>Krok 2 – wierzchołek 3</b><br>
+Odległość do wierzchołka 2 nie ulega poprawie.
+</div>
+
+<div class="step">
+<b>Krok 3 – wierzchołek 2</b><br>
+Aktualizujemy odległość do wierzchołka 6.
+</div>
+
+<div class="step">
+<b>Krok 4 – wierzchołek 5</b><br>
+Aktualizujemy odległości do wierzchołków 4 oraz 8.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Relaksacja krawędzi</h2>
+<p>
+Sprawdzamy warunek:
+</p>
+
+<div class="formula">
+dist[u] + w(u, v) &lt; dist[v]
+</div>
+
+<p>
+Jeśli warunek jest spełniony, aktualizujemy wartość <code>dist[v]</code>.
+</p>
+</div>
+
+<div class="section">
+<h2>Zakończenie</h2>
+<p>
+Po zakończeniu działania algorytmu tablica <code>dist</code> zawiera
+najkrótsze odległości z wierzchołka 1 do wszystkich pozostałych wierzchołków.
+</p>
+</div>
+<div class="section">
+<h2>Kod dijkstry</h2>
+<p>
+<pre><code>
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+const int MAXN = 100000;
+vector&lt;pair&lt;int, int&gt;&gt; graf[MAXN];
+int dist[MAXN];
+
+int main() {
+
+    int n, m;
+
+    priority_queue&lt;pair&lt;int, int&gt;&gt; kolejka;
+    kolejka.push({0, 1});
+
+    while (!kolejka.empty()) {
+        int v = kolejka.top().second;
+        int cost = -kolejka.top().first;
+        kolejka.pop();
+
+        if (dist[v] &lt; cost) continue;
+
+        for (auto &[s, waga] : graf[v]) {
+            if (cost + waga &lt; dist[s]) {
+                dist[s] = cost + waga;
+                kolejka.push({-(cost + waga), s});
+            }
+        }
+    }
+
+    return 0;
+}
+</code></pre>
+</p>
+</div>
+<div class="section">
+<h2>Przykładowe zadania</h2>
+<p>
+<span style="color: gold;">★</span>
+<span style="color: rgb(0, 0, 0);">★</span>
+<span style="color: rgb(0, 0, 0);">★</span>
+<a href="https://szkopul.edu.pl/problemset/problem/RWgD7YltekiHeOoQYZ9Lo0zW/site/?key=statement"> Dijkstra </a>
+<br>
+<span style="color: gold;">★</span>
+<span style="color: gold;">★</span>
+<span style="color: rgb(0, 0, 0);">★</span>
+<a href="https://szkopul.edu.pl/problemset/problem/fNxt_q3slvbbHw9rl8IeFyIj/site/?key=statement"> Dijkstra2 </a>
+<br>
+<span style="color: gold;">★</span>
+<span style="color: gold;">★</span>
+<span style="color: rgb(0, 0, 0);">★</span>
+<a href="https://szkopul.edu.pl/problemset/problem/Ik13DlOhJ9ujfLr0VFoy_st4/site/?key=statement"> Dijkstra Dijkstra </a>
+<br>
+<span style="color: gold;">★</span>
+<span style="color: gold;">★</span>
+<span style="color: gold;">★</span>
+<a href="https://szkopul.edu.pl/problemset/problem/LpgPj1kMBd1aIsADYqkUQf2U/site/?key=statement"> Wiedzmak </a>
+<br>
+<span style="color: gold;">★</span>
+<span style="color: gold;">★</span>
+<span style="color: gold;">★</span>
+<a href="https://szkopul.edu.pl/problemset/problem/ROXsaseQWYR11jbNvCgM19Er/site/?key=statement"> Sumy </a>
+</p>
+</div>
+<div class="section">
+	<h2>Ciekawostki</h2>
+	<p>
+	<a href="fast.html"> Dowiedz się kto najszybciej pisze dijkstre </a>
+
+
+	</p>
+</div>
+</body>
 </html>
