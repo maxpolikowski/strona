@@ -79,10 +79,10 @@ z <b>nieujemnymi wagami krawędzi</b>.
 <h2>Inicjalizacja</h2>
 <p>
 Tworzymy tablicę <code>dist</code>, gdzie <code>dist[v]</code> oznacza
-najkrótszą znaną odległość z wierzchołka startowego do wierzchołka <code>v</code>.
+najkrótszą znaną odległość z wierzchołka startowego <code>s</code> do wierzchołka <code>v</code>.
 </p>
 <ul>
-    <li><code>dist[1] = 0</code></li>
+    <li><code>dist[s] = 0</code></li>
     <li><code>dist[v] = ∞</code> dla pozostałych wierzchołków</li>
 </ul>
 <p>
@@ -95,23 +95,26 @@ wierzchołka o najmniejszej aktualnej wartości dist.
 <h2>Działanie algorytmu krok po kroku</h2>
 
 <div class="step">
-<b>Krok 1 – wierzchołek 1</b><br>
-Z wierzchołka 1 możemy przejść do wierzchołków 3, 2 oraz 5.
+<b>Krok 1 – Wybierz wierzchołek o najmniejszej odległości</b><br>
+Na początku to będzie <code>s</code>, bo jego odległość wynosi 0.
 </div>
 
 <div class="step">
-<b>Krok 2 – wierzchołek 3</b><br>
-Odległość do wierzchołka 2 nie ulega poprawie.
+<b>Krok 2 – Zaktualizuj odległości sąsiadów</b><br>
+Dla każdego sąsiada wierzchołka wybranego w kroku 1 sprawdź, 
+czy przejście przez wybrany wierzchołek daje krótszą drogę niż obecnie zapisana. 
+Jeśli tak, zaktualizuj odległość.
 </div>
 
 <div class="step">
-<b>Krok 3 – wierzchołek 2</b><br>
-Aktualizujemy odległość do wierzchołka 6.
+<b>Krok 3 – Oznacz wierzchołek jako odwiedzony</b><br>
+Ten wierzchołek nie będzie już brany pod uwagę w kolejnych krokach (bo odległość do niego jest już minimalna)(usuń go z kolejki).
 </div>
 
 <div class="step">
-<b>Krok 4 – wierzchołek 5</b><br>
-Aktualizujemy odległości do wierzchołków 4 oraz 8.
+<b>Krok 4 – Powtarzaj </b><br>
+Wybierz teraz nieodwiedzony wierzchołek o najmniejszej odległości i wróć do kroku 2,
+ aż wszystkie wierzchołki zostaną odwiedzone lub potrzebne odległości zostaną obliczone.
 </div>
 
 </div>
