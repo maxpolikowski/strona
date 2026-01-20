@@ -5,6 +5,40 @@
     <title>Najszybszy klepacz dijkstry</title>
 
     <style>
+        .important {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1.6rem;
+      color: #c62828;
+      animation: fadePulse 2.5s ease-in-out infinite;
+      margin-bottom: 5px;
+    }
+
+    .no-anim {
+      animation: none !important;
+      color: #000
+    }
+
+    @keyframes fadePulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.55; }
+      100% { opacity: 1; }
+    }
+
+    button {
+      padding: 8px 14px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background: #444;
+      color: white;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #222;
+    }
         body {
             background-color: #D4FFF6;
             font-family: Arial, sans-serif;
@@ -42,7 +76,9 @@
         }
 
         ul {
-            text-align: left;
+            list-style-position: inside; 
+            text-align: center; 
+            padding-left: 0;
         }
 
         img {
@@ -93,6 +129,98 @@
     komórka pamięci o numerze 0.
 </div>
 </div>
+<div class="section">
+    <h2>Schemat pojedynczej instrukcji</h2>
+    <p>Każda instrukcja kodu RAM składa się z dwóch części:</p>
+    <code>
+        <p>&lt;nazwa rozkazu&gt; &lt;liczba&gt;</p>
+        <p>
+            gdzie &lt;liczba&gt; jest argumentem instrukcji (adresem komórki).
+            <br>
+                 Argumenty postaci =&lt;liczba&gt; są stałymi , czyli po ludzku to są jakieś liczby jakie chcecie np : <code>=3</code>
+        </p>
+    </code>
+</div>
+<div class="section">
+    <h2>Polecenia <div class="important" id="wazne">(ważne)</div></h2>
+
+    <button id="toggleAnim">Wyłącz animację</button>
+
+    <script>
+        const elem = document.getElementById("wazne");
+        const btn = document.getElementById("toggleAnim");
+
+        btn.addEventListener("click", () => {
+        elem.classList.toggle("no-anim");
+
+        if (elem.classList.contains("no-anim")) {
+            btn.textContent = "Włącz animację";
+        } else {
+            btn.textContent = "Wyłącz animację";
+        }
+        });
+    </script>
+
+
+    
+    <div class="step">
+        <b>READ X -</b>
+        odczytanie wartości z taśmy wejściowej i umieszczenie jej w komórce o numerze X. 
+        Po tej operacji głowica (strzałka) taśmy przesuwa się nad kolejna komórkę taśmy,
+    </div>
+    <div class="step">
+        <b>WRITE X - </b>
+        zapis liczby z komórki o numerze X na aktualną komórkę taśmy wyjściowej. 
+        Głowica (strzałka) taśmy przesuwa się na kolejną pozycję,
+    </div>
+    <div class="step">
+        <b>ADD X - </b>
+        sumowanie wartości akumulatora i zawartości z komórki o numerze X,
+         a wynik jest zapisywany do akumulatora,
+    </div>
+    <div class="step">
+        <b>SUB X - </b>
+        Odejmowanie
+    </div>
+    <div class="step">
+        <b>MULT X - </b>
+        Mnożenie
+    </div>
+    <div class="step">
+        <b>DIV X - </b>
+        dzielenie (wynik zaokrąglany jest w dół do najbliższej liczby całkowitej),
+    </div>
+    <div class="step">
+        <b>LOAD X - </b>
+        kopiowanie liczby z komórki o numerze X do akumulatora, 
+        wartość komórki, z której następuje kopiowanie nie jest tracona.
+    </div>
+    <div class="step">
+        <b>STORE X - </b>
+        kopiowanie liczby z akumulatora do komórki o numerze X, 
+        wartość akumulatora nie jest tracona.
+    </div>
+</div>
+<div class="section">
+    <h2>Komentarze do zadań</h2>
+    <ul>
+        <li style="font-size: 0.99rem;">
+            Zadanie Wielki Wielomian da się zrobić bez użycia skoków, 
+            nie używając w ogóle operacji dzielenia (ale też nie używając 65 razy instrukcji MULT)(Matematyka&#129344;).
+        </li>
+        <li>
+            Zadanie Wyrażenie da się zrobić zgodnie z uwagą.
+        </li>
+    </ul>
+</div>
+<div class="section">
+    <h2>Zadania dodatkowe</h2>
+    <p>
+        Zadania dodatkowe nie będą wymagały "doedukowania" się, a raczej ciekawego pomysłu. <br>
+        Możliwe, że trzeba będzie czasem coś wpisać w Google, ale raczej napiszemy to we wskazówce.
+    </p>
+</div>
 </body>
 
 </html>
+
