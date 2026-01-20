@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Najszybszy klepacz dijkstry</title>
+
+    <style>
+    .opis {
+        background: #2a0234;
+        padding: 8px 12px;
+        border-left: 7px solid #84672e;
+        border-right: 7px solid #84672e;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        margin-top: -5px;
+        text-align: center;
+        color: #0099cc;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+
+        .important {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1.6rem;
+      color: #c62828;
+      animation: fadePulse 2.5s ease-in-out infinite;
+      margin-bottom: 5px;
+    }
+
+    .no-anim {
+      animation: none !important;
+      color: #000
+    }
+
+    @keyframes fadePulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.55; }
+      100% { opacity: 1; }
+    }
+
+    button {
+      padding: 8px 14px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background: #444;
+      color: white;
+      border-radius: 6px;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #222;
+    }
+        body {
+            background-color: #D4FFF6;
+            font-family: Arial, sans-serif;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .section {
+            background: #f4fffc;
+            padding: 15px;
+            margin: 20px auto;
+            width: 70%;
+            border-radius: 10px;
+        }
+
+        .step {
+            border-left: 5px solid #0077aa;
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        .formula {
+            background: white;
+            padding: 10px;
+            text-align: center;
+            font-style: italic;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        ul {
+            list-style-position: inside; 
+            text-align: center; 
+            padding-left: 0;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 align="center"> Skoki w maszynie RAM </h1>
+
+<hr width="570" size = "4" color = "black"/>
+<p>
+    <a href="index.html">
+        Powrót do strony głównej
+    </a>
+</p>
+<div class="opis">
+    Skoki to instrukcje pozwalające wykonywać instrukcje programu nie po kolei oraz wielokrotnie.
+</div>
+<div class="section">
+     <h2>Polecenia <div class="important" id="wazne">(ważne)</div></h2>
+
+    <button id="toggleAnim">Wyłącz animację</button>
+
+    <script>
+        const elem = document.getElementById("wazne");
+        const btn = document.getElementById("toggleAnim");
+
+        btn.addEventListener("click", () => {
+        elem.classList.toggle("no-anim");
+
+        if (elem.classList.contains("no-anim")) {
+            btn.textContent = "Włącz animację";
+        } else {
+            btn.textContent = "Wyłącz animację";
+        }
+        });
+    </script>
+    <div class="step">
+        <b>JUMP E -</b>
+        skok do linii programu zawierającej etykietę E,
+    </div>
+    <div class="step">
+        <b>JZERO E - </b>
+        skok do linii programu zawierającej etykietę E wykonywany pod warunkiem,
+         że wartość akumulatora jest równa zeru,
+    </div>
+    <div class="step">
+        <b>JGTZ E - </b>
+        skok do linii programu zawierającej etykietę E wykonywany pod warunkiem,
+         że wartość akumulatora jest większa od zera,
+    </div>
+    <div class="step">
+        <b>HALT - </b>
+        zakończenie programu.
+    </div>
+</div>
+</body>
+
+</html>
+
