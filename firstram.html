@@ -2,9 +2,51 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Najszybszy klepacz dijkstry</title>
+    <title>1. Pierwsze zajęcia z maszyny ram</title>
 
     <style>
+        .sidebar {
+        position: fixed;
+        left: 20px;
+        width: 160px;
+        padding: 12px;
+        background: #e1ec42;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-size: 0.85rem;
+    }
+
+
+
+
+
+        .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 0.6vw;
+    }
+
+    .sidebar li a {
+        display: block;
+        padding: 0.5vw 0.7vw;
+        background: #f5f5f5;
+        border-radius: 6px;
+        color: #333;
+        text-decoration: none;
+        font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+        transition: 0.2s;
+    }
+
+    .sidebar li a:hover {
+        background: #e0eaff;
+        color: #0055cc;
+        transform: translateX(0.3vw);
+    }
+
         .important {
       display: inline-block;
       font-weight: bold;
@@ -98,7 +140,7 @@
         Powrót do strony głównej
     </a>
 </p>
-<div class="section">
+<div class="section" id="uno">
     <h2>Konfiguracja</h2>
     <p>
         Wersję maszyny RAM, z której będziemy korzystać na zajęciach, należy pobrać ze strony
@@ -107,7 +149,8 @@
         <a href="http://ram.ii.uni.wroc.pl/">http://ram.ii.uni.wroc.pl/</a>
     </p>
 </div>
-<div class="section">
+
+<div class="section" id="dos">
     <h2>Elementy maszyny RAM</h2>
     <div class="step">
 <b>Krok 1 – taśma wejściowa (pasek u góry)</b> - służy do wprowadzania danych wejściowych,
@@ -129,7 +172,7 @@
     komórka pamięci o numerze 0.
 </div>
 </div>
-<div class="section">
+<div class="section" id="tres">
     <h2>Schemat pojedynczej instrukcji</h2>
     <p>Każda instrukcja kodu RAM składa się z dwóch części:</p>
     <code>
@@ -141,7 +184,7 @@
         </p>
     </code>
 </div>
-<div class="section">
+<div class="section" id="cztery">
     <h2>Polecenia <div class="important" id="wazne">(ważne)</div></h2>
 
     <button id="toggleAnim">Wyłącz animację</button>
@@ -201,7 +244,7 @@
         wartość akumulatora nie jest tracona.
     </div>
 </div>
-<div class="section">
+<div class="section" id="piec">
     <h2>Komentarze do zadań</h2>
     <ul>
         <li style="font-size: 0.99rem;">
@@ -213,13 +256,33 @@
         </li>
     </ul>
 </div>
-<div class="section">
+<div class="section" id="last">
     <h2>Zadania dodatkowe</h2>
     <p>
         Zadania dodatkowe nie będą wymagały "doedukowania" się, a raczej ciekawego pomysłu. <br>
         Możliwe, że trzeba będzie czasem coś wpisać w Google, ale raczej napiszemy to we wskazówce.
     </p>
 </div>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <ul>
+        <li><a href="#uno">Konfiguracja</a></li>
+        <li><a href="#dos">Elementy maszyny RAM</a></li>
+        <li><a href="#tres">Schemat pojedynczej instrukcji</a></li>
+        <li><a href="#cztery">Polecenia</a></li>
+        <li><a href="#piec">Komentarze do zadań</a></li>
+        <li><a href="#last">Zadania dodatkowe</a></li>
+    </ul>
+</div>
+<script>
+    window.addEventListener("load", () => {
+        const section = document.getElementById("uno");
+        const sidebar = document.querySelector(".sidebar");
+
+        const rect = section.getBoundingClientRect();
+        sidebar.style.top = rect.top + "px";
+    });
+</script>
 </body>
 
 </html>

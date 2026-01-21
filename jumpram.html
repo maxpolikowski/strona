@@ -2,9 +2,54 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Najszybszy klepacz dijkstry</title>
+    <title>2. Skoki w maszynie RAM</title>
 
     <style>
+            .sidebar {
+        position: fixed;
+        left: 20px;
+        width: 160px;
+        padding: 12px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        font-size: 0.85rem;
+    }
+
+
+
+
+
+        .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        margin-bottom: 0.6vw;
+    }
+
+    .sidebar li a {
+        display: block;
+        padding: 0.5vw 0.7vw;
+        background: #f5f5f5;
+        border-radius: 6px;
+        color: #333;
+        text-decoration: none;
+        font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+        transition: 0.2s;
+    }
+
+    .sidebar li a:hover {
+        background: #e0eaff;
+        color: #0055cc;
+        transform: translateX(0.3vw);
+    }
+
+
+
+
     .opis {
         background: #2a0234;
         padding: 8px 12px;
@@ -117,7 +162,7 @@
 <div class="opis">
     Skoki to instrukcje pozwalające wykonywać instrukcje programu nie po kolei oraz wielokrotnie.
 </div>
-<div class="section">
+<div class="section" id="uno">
      <h2>Polecenia <div class="important" id="wazne">(ważne)</div></h2>
 
     <button id="toggleAnim">Wyłącz animację</button>
@@ -155,6 +200,36 @@
         zakończenie programu.
     </div>
 </div>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <ul>
+        <li><a href="#wazne.html">Polecenia</a></li>
+    </ul>
+</div>
+<div class="section" id="dos">
+    <h2>Skoki w schematach blokowych</h2>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    window.addEventListener("load", () => {
+        const section = document.getElementById("uno");
+        const sidebar = document.querySelector(".sidebar");
+
+        const rect = section.getBoundingClientRect();
+        sidebar.style.top = rect.top + "px";
+    });
+</script>
+
 </body>
 
 </html>
