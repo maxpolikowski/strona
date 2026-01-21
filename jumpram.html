@@ -4,154 +4,183 @@
     <meta charset="UTF-8">
     <title>2. Skoki w maszynie RAM</title>
 
-    <style>
-            .sidebar {
-        position: fixed;
-        left: 20px;
-        width: 160px;
-        padding: 12px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        font-size: 0.85rem;
+     <style>
+     /* ===== SIDEBAR ===== */
+
+.sidebar {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    width: 160px;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    font-size: 0.85rem;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 0.6vw;
+}
+
+.sidebar li a {
+    display: block;
+    padding: 0.5vw 0.7vw;
+    background: #f5f5f5;
+    border-radius: 6px;
+    color: #333;
+    text-decoration: none;
+    font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+    transition: 0.2s;
+}
+
+.sidebar li a:hover {
+    background: #e0eaff;
+    color: #0055cc;
+    transform: translateX(0.3vw);
+}
+
+/* ===== OPIS ===== */
+
+.opis {
+    background: #2a0234;
+    padding: 8px 12px;
+    border-left: 7px solid #84672e;
+    border-right: 7px solid #84672e;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-align: center;
+    color: #0099cc;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+/* ===== ANIMACJA ===== */
+
+.important {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #c62828;
+    animation: fadePulse 2.5s ease-in-out infinite;
+    margin-bottom: 5px;
+}
+
+.no-anim {
+    animation: none !important;
+    color: #000;
+}
+
+@keyframes fadePulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.55; }
+    100% { opacity: 1; }
+}
+
+/* ===== PRZYCISKI ===== */
+
+button {
+    padding: 8px 14px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    background: #444;
+    color: white;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #222;
+}
+
+/* ===== OGÓLNE ===== */
+
+body {
+    background-color: #D4FFF6;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* ===== TREŚĆ ===== */
+
+h1, h2 {
+    text-align: center;
+}
+
+.section {
+    background: #f4fffc;
+    padding: 15px;
+    margin: 20px auto;
+    width: 70%;
+    border-radius: 10px;
+
+    /* najważniejsze: odsunięcie od sidebaru */
+    margin-left: 220px;
+}
+
+
+.step {
+    border-left: 5px solid #0077aa;
+    padding-left: 10px;
+    margin: 10px 0;
+}
+
+.formula {
+    background: white;
+    padding: 10px;
+    text-align: center;
+    font-style: italic;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+p {
+    text-align: center;
+}
+
+ul {
+    list-style-position: inside;
+    text-align: center;
+    padding-left: 0;
+}
+
+
+
+img {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+/* ===== RESPONSYWNOŚĆ ===== */
+
+@media (max-width: 800px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
-
-
-
-
-        .sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .sidebar li {
-        margin-bottom: 0.6vw;
-    }
-
-    .sidebar li a {
-        display: block;
-        padding: 0.5vw 0.7vw;
-        background: #f5f5f5;
-        border-radius: 6px;
-        color: #333;
-        text-decoration: none;
-        font-size: clamp(0.65rem, 0.9vw, 0.85rem);
-        transition: 0.2s;
-    }
-
-    .sidebar li a:hover {
-        background: #e0eaff;
-        color: #0055cc;
-        transform: translateX(0.3vw);
-    }
-
-
-
-
+    .section,
     .opis {
-        background: #2a0234;
-        padding: 8px 12px;
-        border-left: 7px solid #84672e;
-        border-right: 7px solid #84672e;
-        border-radius: 6px;
-        font-size: 0.95rem;
-        margin-top: -5px;
-        text-align: center;
-        color: #0099cc;
-        width: fit-content;
-        margin: 0 auto;
+        margin-left: 0;
+        width: 90%;
     }
+}
 
-
-        .important {
-      display: inline-block;
-      font-weight: bold;
-      font-size: 1.6rem;
-      color: #c62828;
-      animation: fadePulse 2.5s ease-in-out infinite;
-      margin-bottom: 5px;
-    }
-
-    .no-anim {
-      animation: none !important;
-      color: #000
-    }
-
-    @keyframes fadePulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.55; }
-      100% { opacity: 1; }
-    }
-
-    button {
-      padding: 8px 14px;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      background: #444;
-      color: white;
-      border-radius: 6px;
-      transition: 0.2s;
-    }
-
-    button:hover {
-      background: #222;
-    }
-        body {
-            background-color: #D4FFF6;
-            font-family: Arial, sans-serif;
-        }
-
-        h1, h2 {
-            text-align: center;
-        }
-
-        .section {
-            background: #f4fffc;
-            padding: 15px;
-            margin: 20px auto;
-            width: 70%;
-            border-radius: 10px;
-        }
-
-        .step {
-            border-left: 5px solid #0077aa;
-            padding-left: 10px;
-            margin: 10px 0;
-        }
-
-        .formula {
-            background: white;
-            padding: 10px;
-            text-align: center;
-            font-style: italic;
-            border-radius: 8px;
-            margin: 10px 0;
-        }
-
-        p {
-            text-align: center;
-        }
-
-        ul {
-            list-style-position: inside; 
-            text-align: center; 
-            padding-left: 0;
-        }
-
-        img {
-            display: block;
-            margin: 20px auto;
-            max-width: 100%;
-        }
     </style>
 </head>
 
 <body>
 
-<h1 align="center"> Skoki w maszynie RAM </h1>
+<h1 align="center" id="start"> Skoki w maszynie RAM </h1>
 
 <hr width="570" size = "4" color = "black"/>
 <p>
@@ -200,26 +229,51 @@
         zakończenie programu.
     </div>
 </div>
+<div class="section" id="dos">
+    <h2>Skoki w schematach blokowych</h2>
+    &#8227;Skok bezwarunkowy JUMP
+    <div class="step">
+        <code>
+            <p>
+            etykieta: &lt;instrukcja&gt;
+            <br>
+              (...)
+              <br>
+          JUMP etykieta
+          </p>
+        </code>
+    </div>
+    odpowiada schematowi:
+    <img src="shemat1.png">
+    &#8227;Skok warunkowy JZERO
+    <div class="step">
+        <code>
+            <p>Etykieta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;instrukcja&gt;</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(...)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;JZERO&gt;</p>
+                <span class="right-inline">Etykieta</span>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;dalsze instrukcje&gt;</p>
+        </code>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <div class="sidebar">
     <h3>Menu</h3>
     <ul>
-        <li><a href="#wazne.html">Polecenia</a></li>
+        <li><a href="#start">Początek</a></li>
+        <li><a href="#wazne">Polecenia</a></li>
+        <li><a href="#dos">Skoki w schematach blokowych</a></li>
     </ul>
 </div>
-<div class="section" id="dos">
-    <h2>Skoki w schematach blokowych</h2>
-</div>
-
-
-
-
-
-
-
-
-
-
-
 <script>
     window.addEventListener("load", () => {
         const section = document.getElementById("uno");
